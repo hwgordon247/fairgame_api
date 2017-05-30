@@ -1,0 +1,23 @@
+{
+  "name": "fairgame_api",
+  "version": "1.0.0",
+  "description": "api for fairgame application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwgordon247/fairgame_api.git"
+  },
+  "author": "Henry Gordon <hwgordon247@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hwgordon247/fairgame_api/issues"
+  },
+  "homepage": "https://github.com/hwgordon247/fairgame_api#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
