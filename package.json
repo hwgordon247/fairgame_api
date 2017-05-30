@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "nodemon src/app.js",
+    "start_db": "mongod --port 27017 --dbpath /data"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,8 @@
   },
   "homepage": "https://github.com/hwgordon247/fairgame_api#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
