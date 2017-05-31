@@ -20,7 +20,8 @@
   "homepage": "https://github.com/hwgordon247/fairgame_api#readme",
   "dependencies": {
     "express": "^4.15.3",
-    "mongodb": "^2.2.27"
+    "mongodb": "^2.2.27",
+    "mongoose": "^4.10.4"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
