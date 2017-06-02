@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/hwgordon247/fairgame_api#readme",
   "dependencies": {
+    "config": "^1.26.1",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
     "mongodb": "^2.2.27",
     "mongoose": "^4.10.4",
     "request": "^2.81.0"
