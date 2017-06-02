@@ -1,5 +1,5 @@
 const Router = require('./router');
-const User = require.main.require('./models/user');
+const User = require.main.require('./src/models/user');
 
 class Routes extends Router {
 
