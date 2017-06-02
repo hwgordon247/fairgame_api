@@ -11,15 +11,15 @@ class Router {
   }
 
   registerRoutes() {
-    let routes = this.routes
+    const routes = this.routes;
 
-    for(let [route, method] of routes) {
-      let verb = route.match(/^\w+/g)[0].toLowerCase()
-      let path = route.match(/\/(\w+)?$/g)[0]
+    for (const [route, method] of routes) {
+      const verb = route.match(/^\w+/g)[0].toLowerCase();
+      const path = route.match(/\/(\w+)?$/g)[0];
       this.app[verb](path, this[method].bind(this));
     }
   }
 }
 
 
-module.exports = Router
+module.exports = Router;

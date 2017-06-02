@@ -24,6 +24,28 @@
     "mongoose": "^4.10.4"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
     "nodemon": "^1.11.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "parserOptions": {
+      "ecmaVersion": 7,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "class-methods-use-this": "off",
+      "import/newline-after-import": "off",
+      "no-restricted-syntax": "off",
+      "no-new": "off"
+    }
   }
 }
