@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/hwgordon247/fairgame_api#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "mongodb": "^2.2.27",
     "mongoose": "^4.10.4",
+    "morgan": "^1.8.2",
     "request": "^2.81.0"
   },
   "devDependencies": {
@@ -33,7 +35,6 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "jasmine-node": "^1.14.5",
-    "morgan": "^1.8.2",
     "nodemon": "^1.11.0"
   },
   "eslintConfig": {

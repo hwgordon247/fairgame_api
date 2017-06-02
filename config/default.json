@@ -1,3 +1,4 @@
 {
-  "databaseUrl": "mongodb://localhost:27017/fairgame"
+  "databaseUrl": "mongodb://localhost:27017/fairgame",
+  "secret": "secret"
 }
