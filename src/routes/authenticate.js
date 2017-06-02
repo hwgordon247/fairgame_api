@@ -10,7 +10,6 @@ class Authenticate extends Router {
   }
 
   authenticate(req, res) {
-    console.log(req.body);
     User.findOne({
       username: req.body.username,
     }, (err, user) => {
