@@ -15,6 +15,8 @@ mongoose.connect(config.databaseUrl);
 
 app.set('superSecret', config.secret);
 
+console.log(config.databaseUrl);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));

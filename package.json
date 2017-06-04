@@ -4,7 +4,7 @@
   "description": "api for fairgame application",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec",
+    "test": "./node_modules/.bin/jasmine-node spec --autotest --watch ./src --color --verbose",
     "start": "nodemon index.js",
     "start_db": "mongod --port 27017 --dbpath /data",
     "setup": "npm i"
