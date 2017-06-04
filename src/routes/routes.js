@@ -1,5 +1,6 @@
 const Router = require('./router');
 const User = require.main.require('./src/models/user');
+const mongoose = require('mongoose');
 
 class Routes extends Router {
 
@@ -13,6 +14,7 @@ class Routes extends Router {
       ['GET /hey', 'hey'],
       ['GET /store', 'store'],
       ['GET /list', 'list'],
+      ['GET /change', 'change'],
     ]);
   }
 
@@ -38,6 +40,12 @@ class Routes extends Router {
       if (err) console.log(err);
       res.send(users);
     });
+  }
+
+  change(req, res) {
+    mongoose.Promise = global.Promise;
+    mongoose.connect('mongodb://localhost:27017/fairgame_test');
+    res.send('ok');
   }
 }
 

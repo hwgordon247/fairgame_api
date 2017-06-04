@@ -17,9 +17,14 @@ app.set('superSecret', config.secret);
 
 console.log(config.databaseUrl);
 
+console.log(process.env.NODE_ENV);
+app.use((req, res, next) => {
+  next();
+});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+
 
 new Routes(app);
 new Authenticate(app);
