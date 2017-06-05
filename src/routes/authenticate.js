@@ -1,8 +1,11 @@
 const Router = require('./Router');
 
-const AuthenticateService = require.main.require('./src/services/AuthenticateService');
-
 class Authenticate extends Router {
+  constructor(app, AuthenticateService) {
+    super(app);
+    this.authenticateService = AuthenticateService;
+  }
+
   get routes() {
     return new Map([
       ['POST /authenticate', 'authenticate'],
@@ -10,8 +13,7 @@ class Authenticate extends Router {
   }
 
   authenticate(req, res) {
-    // const auth = new AuthenticateService();
-    AuthenticateService.authenticate(req, res);
+    this.authenticateService.authenticate(req, res);
   }
 }
 
