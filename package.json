@@ -4,8 +4,9 @@
   "description": "api for fairgame application",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine-node spec --autotest --watch ./src --color --verbose --config NODE_ENV test",
+    "test": "./node_modules/.bin/jasmine JASMINE_CONFIG_PATH=./spec/support/jasmine.json",
     "start": "nodemon index.js",
+    "start:test": "NODE_ENV=test nodemon index.js",
     "start_db": "mongod --port 27017 --dbpath /data",
     "setup": "npm i"
   },
@@ -35,7 +36,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "jasmine-node": "^1.14.5",
+    "jasmine": "^2.6.0",
     "nodemon": "^1.11.0"
   },
   "eslintConfig": {

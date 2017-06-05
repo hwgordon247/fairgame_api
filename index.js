@@ -15,9 +15,8 @@ mongoose.connect(config.databaseUrl);
 
 app.set('superSecret', config.secret);
 
-console.log(config.databaseUrl);
+console.log('---->>>>>', config.databaseUrl);
 
-console.log(process.env.NODE_ENV);
 app.use((req, res, next) => {
   next();
 });

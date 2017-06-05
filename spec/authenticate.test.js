@@ -1,27 +1,22 @@
-process.env.NODE_ENV = 'test';
 const request = require('request');
 
 const baseUrl = 'http://localhost:3000/';
-// const config = require('config');
 const User = require('../src/models/user');
 const mongoose = require('mongoose');
 
 describe('Authenticate', () => {
-  beforeEach(() => {
-    request.get(`${baseUrl}change`, (error, res, body) => {
-      console.log(body);
-      mongoose.Promise = global.Promise;
-      mongoose.connect('mongodb://localhost:27017/fairgame_test');
-      const testUser = new User({
-        name: 'dude',
-        username: 'heyhey',
-        password: 'Password123',
-      });
-      console.log(process.env.NODE_ENV);
-      testUser.save((err) => {
-        if (err) console.log(err);
-        console.log('saved');
-      });
+  beforeEach((done) => {
+    mongoose.Promise = global.Promise;
+    mongoose.connect('mongodb://localhost:27017/fairgame_test');
+    const testUser = new User({
+      name: 'dude',
+      username: 'heyhey',
+      password: 'Password123',
+    });
+    testUser.save((err) => {
+      if (err) console.log(err);
+      console.log('saved');
+      done();
     });
   });
 
@@ -30,6 +25,7 @@ describe('Authenticate', () => {
       console.log('deleted');
     });
   });
+
   describe('POST /authenticate', () => {
     const userData = {
       username: 'heyhey',
