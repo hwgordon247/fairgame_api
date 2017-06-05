@@ -6,16 +6,14 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const Routes = require('./src/routes/routes');
-const Authenticate = require('./src/routes/authenticate');
+const Authenticate = require('./src/routes/Authenticate');
 
 // Connection URL
 // let url = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/fairgame`;
 mongoose.Promise = global.Promise;
 mongoose.connect(config.databaseUrl);
 
-app.set('superSecret', config.secret);
-
-console.log('---->>>>>', config.databaseUrl);
+// app.set('superSecret', config.secret);
 
 app.use((req, res, next) => {
   next();

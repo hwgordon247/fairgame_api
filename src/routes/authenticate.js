@@ -1,6 +1,6 @@
-const Router = require('./router');
-const User = require.main.require('./src/models/user');
-const jwt = require('jsonwebtoken');
+const Router = require('./Router');
+
+const AuthenticateService = require.main.require('./src/services/AuthenticateService');
 
 class Authenticate extends Router {
   get routes() {
@@ -10,33 +10,8 @@ class Authenticate extends Router {
   }
 
   authenticate(req, res) {
-    User.findOne({
-      username: req.body.username,
-    }, (err, user) => {
-      if (err) throw err;
-
-      if (!user) {
-        res.json({ success: false, message: 'Authentication failed. User not found.' });
-      } else if (user) {
-        // check if password matches
-        if (user.password !== req.body.password) {
-          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-        } else {
-          // if user is found and password is right
-          // create a token
-          const token = jwt.sign(user, this.app.get('superSecret'), {
-            expiresIn: 60 * 60 * 24,
-          });
-
-          // return the information including token as JSON
-          res.json({
-            success: true,
-            message: 'Enjoy your token!',
-            token,
-          });
-        }
-      }
-    });
+    // const auth = new AuthenticateService();
+    AuthenticateService.authenticate(req, res);
   }
 }
 
