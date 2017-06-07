@@ -1,10 +1,13 @@
-const User = require.main.require('./src/models/UserModel');
-const jwt = require('jsonwebtoken');
-const config = require('config');
-
 class AuthenticateService {
+
+  constructor(User, jwt, config) {
+    this.User = User;
+    this.jwt = jwt;
+    this.config = config;
+  }
+
   authenticate(req, res) {
-    User.findOne({
+    this.User.findOne({
       username: req.body.username,
     }, (err, user) => {
       if (err) throw err;
@@ -18,7 +21,7 @@ class AuthenticateService {
         } else {
           // if user is found and password is right
           // create a token
-          const token = jwt.sign(user, config.secret, {
+          const token = this.jwt.sign(user, this.config.secret, {
             expiresIn: 60 * 60 * 24,
           });
 
@@ -34,4 +37,4 @@ class AuthenticateService {
   }
 }
 
-module.exports = new AuthenticateService();
+module.exports = AuthenticateService;
