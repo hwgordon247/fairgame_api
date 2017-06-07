@@ -1,8 +1,8 @@
 class ExampleMiddleware {
-  constructor(req, res, next, word) {
+  run(req, res, next, word) {
     console.log(word);
     next();
   }
 }
 
-module.exports = ExampleMiddleware;
+module.exports = new ExampleMiddleware();
