@@ -20,15 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-app.use((req, res, next) => { new ExampleMiddleware(req, res, next, 'twat'); });
+app.use((req, res, next) => { new ExampleMiddleware(req, res, next, 'howdy'); });
 
 new Injector(app);
-
-app.get('/test',
-(req, res, next) => { new ExampleMiddleware(req, res, next, 'poo'); },
-(req, res) => {
-  res.send('hello yooyoyoyo');
-});
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');

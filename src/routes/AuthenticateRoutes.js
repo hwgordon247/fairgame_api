@@ -15,7 +15,7 @@ class Authenticate {
   }
 
   authenticateMiddleware(req, res, next) {
-    new this.ExampleMiddleware(req, res, next, 'MEGA TWAT');
+    new this.ExampleMiddleware(req, res, next, 'yoyoyoyoyoy');
   }
 }
 
