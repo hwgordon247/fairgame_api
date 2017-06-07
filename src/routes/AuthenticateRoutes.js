@@ -1,19 +1,21 @@
-const Router = require('./Router');
-
-class Authenticate extends Router {
-  constructor(app, AuthenticateService) {
-    super(app);
+class Authenticate {
+  constructor(app, AuthenticateService, ExampleMiddleware) {
+    this.app = app;
     this.authenticateService = AuthenticateService;
+    this.ExampleMiddleware = ExampleMiddleware;
+    this.routes();
   }
 
-  get routes() {
-    return new Map([
-      ['POST /authenticate', 'authenticate'],
-    ]);
+  routes() {
+    this.app.post('/authenticate', this.authenticateMiddleware.bind(this), this.authenticate.bind(this));
   }
 
   authenticate(req, res) {
     this.authenticateService.authenticate(req, res);
+  }
+
+  authenticateMiddleware(req, res, next) {
+    new this.ExampleMiddleware(req, res, next, 'MEGA TWAT');
   }
 }
 

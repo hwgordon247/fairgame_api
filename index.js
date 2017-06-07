@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 
 const Injector = require('./injector.js');
 
+const ExampleMiddleware = require('./src/middleware/ExampleMiddleware');
+
 // Connection URL
 // let url = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/fairgame`;
 mongoose.Promise = global.Promise;
@@ -18,7 +20,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
+app.use((req, res, next) => { new ExampleMiddleware(req, res, next, 'twat'); });
+
 new Injector(app);
+
+app.get('/test',
+(req, res, next) => { new ExampleMiddleware(req, res, next, 'poo'); },
+(req, res) => {
+  res.send('hello yooyoyoyo');
+});
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
