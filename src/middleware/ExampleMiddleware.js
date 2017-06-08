@@ -5,4 +5,4 @@ class ExampleMiddleware {
   }
 }
 
-module.exports = new ExampleMiddleware();
+module.exports = ExampleMiddleware;

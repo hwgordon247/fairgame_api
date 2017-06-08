@@ -14,8 +14,10 @@ class Injector {
   constructor(app) {
     const authenticateService = new AuthenticateService(User, jwt, config);
 
+    const exampleMiddleware = new ExampleMiddleware();
+
     new Routes(app);
-    new AuthenticateRoutes(app, authenticateService, ExampleMiddleware);
+    new AuthenticateRoutes(app, authenticateService, exampleMiddleware);
   }
 }
 

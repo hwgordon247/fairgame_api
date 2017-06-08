@@ -1,13 +1,14 @@
-class Authenticate {
+class AuthenticateRoute {
   constructor(app, AuthenticateService, ExampleMiddleware) {
     this.app = app;
     this.authenticateService = AuthenticateService;
     this.ExampleMiddleware = ExampleMiddleware;
+    this.authenticateMiddleware = this.authenticateMiddleware.bind(this);
     this.routes();
   }
 
   routes() {
-    this.app.post('/authenticate', this.authenticateMiddleware.bind(this), this.authenticate.bind(this));
+    this.app.post('/authenticate', this.authenticateMiddleware, this.authenticate.bind(this));
   }
 
   authenticate(req, res) {
@@ -19,4 +20,4 @@ class Authenticate {
   }
 }
 
-module.exports = Authenticate;
+module.exports = AuthenticateRoute;

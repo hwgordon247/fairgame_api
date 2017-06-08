@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-app.use((req, res, next) => { ExampleMiddleware.run(req, res, next, 'howdy'); });
+const exampleMiddleware = new ExampleMiddleware();
+
+app.use((req, res, next) => { exampleMiddleware.run(req, res, next, 'howdy'); });
 
 new Injector(app);
 
