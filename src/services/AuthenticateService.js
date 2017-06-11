@@ -11,27 +11,40 @@ class AuthenticateService {
       username: req.body.username,
     }, (err, user) => {
       if (err) throw err;
-
       if (!user) {
         res.json({ success: false, message: 'Authentication failed. User not found.' });
       } else if (user) {
-        // check if password matches
         if (user.password !== req.body.password) {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });
         } else {
-          // if user is found and password is right
-          // create a token
           const token = this.jwt.sign(user, this.config.secret, {
             expiresIn: 60 * 60 * 24,
           });
-
-          // return the information including token as JSON
           res.json({
             success: true,
             message: 'Enjoy your token!',
             token,
           });
         }
+      }
+    });
+  }
+
+  register(req, res) {
+    const newUser = new this.User(req.body);
+
+    newUser.save((error) => {
+      if (error) {
+        res.status(400).send({ error });
+      } else {
+        const token = this.jwt.sign(newUser, this.config.secret, {
+          expiresIn: 60 * 60 * 24,
+        });
+        res.json({
+          success: true,
+          message: 'Welcome to the App',
+          token,
+        });
       }
     });
   }

@@ -3,16 +3,21 @@ class AuthenticateRoute {
     this.app = app;
     this.authenticateService = AuthenticateService;
     this.ExampleMiddleware = ExampleMiddleware;
-    this.authenticateMiddleware = this.authenticateMiddleware.bind(this);
     this.routes();
   }
 
   routes() {
-    this.app.post('/authenticate', this.authenticateMiddleware, this.authenticate.bind(this));
+    this.app.post('/authenticate', this.authenticate.bind(this));
+    this.app.post('/register', this.register.bind(this));
   }
 
   authenticate(req, res) {
+    console.log('herere');
     this.authenticateService.authenticate(req, res);
+  }
+
+  register(req, res) {
+    this.authenticateService.register(req, res);
   }
 
   authenticateMiddleware(req, res, next) {

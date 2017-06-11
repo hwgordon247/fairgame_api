@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const Injector = require('./injector.js');
 
-const ExampleMiddleware = require('./src/middleware/ExampleMiddleware');
+// const ExampleMiddleware = require('./src/middleware/ExampleMiddleware');
 
 // Connection URL
 // let url = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/fairgame`;
@@ -20,9 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-const exampleMiddleware = new ExampleMiddleware();
-
-app.use((req, res, next) => { exampleMiddleware.run(req, res, next, 'howdy'); });
+// const exampleMiddleware = new ExampleMiddleware();
+// app.use((req, res, next) => { exampleMiddleware.run(req, res, next, 'howdy'); });
 
 new Injector(app);
 
