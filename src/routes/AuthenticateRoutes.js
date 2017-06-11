@@ -12,7 +12,6 @@ class AuthenticateRoute {
   }
 
   authenticate(req, res) {
-    console.log('herere');
     this.authenticateService.authenticate(req, res);
   }
 

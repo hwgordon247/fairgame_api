@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('config');
 const baseUrl = config.baseUrl;
-const User = require('../src/models/UserModel');
+const User = require('../../src/models/UserModel');
 
 const email = 'dude@legend.com';
 const username = 'Boaty Mc BoatFace';
