@@ -14,9 +14,16 @@ describe('User', () => {
     const user = new User({ email, username, password });
     user.save((err) => {
       expect(err).toBeNull();
-      token = jwt.sign(user, this.config.secret, {
+      token = jwt.sign(user, config.secret, {
         expiresIn: 60 * 60 * 24,
       });
+      done();
+    });
+  });
+
+  afterAll((done) => {
+    User.remove({}, (err) => {
+      expect(err).toBeNull();
       done();
     });
   });
@@ -26,7 +33,7 @@ describe('User', () => {
       request.get({
         url: `${baseUrl}user`,
         headers: {
-          authToken: token,
+          authtoken: token,
         },
       },
       (error, response, body) => {

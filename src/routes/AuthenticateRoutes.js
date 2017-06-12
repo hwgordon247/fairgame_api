@@ -1,4 +1,4 @@
-class AuthenticateRoute {
+class AuthenticateRoutes {
   constructor(app, AuthenticateService, ExampleMiddleware) {
     this.app = app;
     this.authenticateService = AuthenticateService;
@@ -24,4 +24,4 @@ class AuthenticateRoute {
   }
 }
 
-module.exports = AuthenticateRoute;
+module.exports = AuthenticateRoutes;
