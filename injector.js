@@ -4,6 +4,7 @@ const config = require('config');
 const Routes = require('./src/routes/routes');
 const AuthenticateRoutes = require('./src/routes/AuthenticateRoutes');
 const UserRoutes = require('./src/routes/UserRoutes');
+const ItemRoutes = require('./src/routes/ItemRoutes');
 
 const AuthenticateService = require('./src/services/AuthenticateService');
 const UserService = require('./src/services/UserService');
@@ -22,6 +23,7 @@ class Injector {
     new Routes(app);
     new AuthenticateRoutes(app, authenticateService, exampleMiddleware);
     new UserRoutes(app, userService);
+    new ItemRoutes(app);
   }
 }
 

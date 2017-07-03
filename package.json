@@ -55,7 +55,8 @@
       "class-methods-use-this": "off",
       "import/newline-after-import": "off",
       "no-restricted-syntax": "off",
-      "no-new": "off"
+      "no-new": "off",
+      "max-len": [2, 150, 4]
     }
   }
 }
