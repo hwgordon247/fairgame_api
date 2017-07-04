@@ -1,6 +1,7 @@
 class ItemRoutes {
-  constructor(app) {
+  constructor(app, itemService) {
     this.app = app;
+    this.itemService = itemService;
     this.routes();
   }
 
@@ -9,7 +10,7 @@ class ItemRoutes {
   }
 
   getItems(req, res) {
-    res.send('hello');
+    this.itemService.getItems(req, res);
   }
 }
 
