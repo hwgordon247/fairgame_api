@@ -31,6 +31,7 @@ describe('Authenticate', () => {
         form: userData,
       },
       (error, response, body) => {
+        expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).message).toBe('Welcome to the App');
         done();
