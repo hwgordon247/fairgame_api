@@ -6,13 +6,15 @@ class AuthenticateService {
     this.config = config;
   }
 
-  login(req, res) {
+  login(req, res, next) {
     this.User.findOne({
       username: req.body.username,
     }, (err, user) => {
       if (err) throw err;
       if (!user) {
-        res.json({ success: false, message: 'Authentication failed. User not found.' });
+        // res.status(401);
+        next(new Error('Something went wrong :-('));
+        // res.render('error', { error: err });
       } else if (user) {
         if (user.password !== req.body.password) {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });

@@ -5,6 +5,7 @@ const User = require('../../src/models/UserModel');
 
 const email = 'dude@legend.com';
 const username = 'Boaty Mc BoatFace';
+const wrongUsername = 'not me';
 const password = 'Password123';
 
 describe('Authenticate', () => {
@@ -62,6 +63,24 @@ describe('Authenticate', () => {
       (error, response, body) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).message).toBe('Enjoy your token!');
+        done();
+      });
+    });
+
+    it('should return 401 if user is not found', (done) => {
+      request({
+        method: 'POST',
+        url: `${baseUrl}login`,
+        form: {
+          username: wrongUsername,
+          password,
+        },
+      },
+      (error, response, body) => {
+        expect(response.statusCode).toBe(401);
+        console.log(error);
+        console.log(body);
+        expect(error).toBe('error');
         done();
       });
     });

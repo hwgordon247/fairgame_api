@@ -68,7 +68,7 @@ describe('Item', () => {
       });
     });
 
-    it('should create an item', () => {
+    it('should create an item', (done) => {
       request.post({
         url: `${baseUrl}create-item`,
         form: {
@@ -82,10 +82,11 @@ describe('Item', () => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).message).toBe('Successfully created Item');
+        done();
       });
     });
 
-    it('should return an error if not logged in', () => {
+    it('should return an error if not logged in', (done) => {
       request.post({
         url: `${baseUrl}create-item`,
         form: {
@@ -95,6 +96,7 @@ describe('Item', () => {
       }, (error, response) => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(401);
+        done();
       });
     });
   });

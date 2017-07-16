@@ -31,6 +31,11 @@ app.use((req, res, next) => {
 
 new Injector(app);
 
+app.use((error, req, res, next) => {
+  console.log('ERROR', error);
+  res.status(401).send('yoyoyo');
+});
+
 app.listen(5000, () => {
   console.log('Example app listening on port 5000!');
 });
