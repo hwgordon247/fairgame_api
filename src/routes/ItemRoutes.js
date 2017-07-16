@@ -7,10 +7,15 @@ class ItemRoutes {
 
   routes() {
     this.app.get('/items', this.getItems.bind(this));
+    this.app.post('/create-item', this.createItem.bind(this));
   }
 
   getItems(req, res) {
     this.itemService.getItems(req, res);
+  }
+
+  createItem(req, res) {
+    this.itemService.createItem(req, res);
   }
 }
 

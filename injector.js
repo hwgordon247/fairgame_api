@@ -19,7 +19,7 @@ class Injector {
   constructor(app) {
     const authenticateService = new AuthenticateService(User, jwt, config);
     const userService = new UserService(User, jwt, config);
-    const itemService = new ItemService(Item);
+    const itemService = new ItemService(Item, jwt, config);
 
     const exampleMiddleware = new ExampleMiddleware();
 
