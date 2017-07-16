@@ -7,12 +7,12 @@ class AuthenticateRoutes {
   }
 
   routes() {
-    this.app.post('/authenticate', this.authenticate.bind(this));
+    this.app.post('/login', this.authenticate.bind(this));
     this.app.post('/register', this.register.bind(this));
   }
 
   authenticate(req, res) {
-    this.authenticateService.authenticate(req, res);
+    this.authenticateService.login(req, res);
   }
 
   register(req, res) {

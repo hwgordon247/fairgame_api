@@ -51,12 +51,12 @@ describe('Authenticate', () => {
     });
   });
 
-  describe('POST /authenticate', () => {
+  describe('POST /login', () => {
     const userData = { username, password };
 
     it('should return jwt token if username and password are correct', (done) => {
       request.post({
-        url: `${baseUrl}authenticate`,
+        url: `${baseUrl}login`,
         form: userData,
       },
       (error, response, body) => {

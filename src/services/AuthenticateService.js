@@ -6,7 +6,7 @@ class AuthenticateService {
     this.config = config;
   }
 
-  authenticate(req, res) {
+  login(req, res) {
     this.User.findOne({
       username: req.body.username,
     }, (err, user) => {
