@@ -84,5 +84,18 @@ describe('Item', () => {
         expect(JSON.parse(body).message).toBe('Successfully created Item');
       });
     });
+
+    it('should return an error if not logged in', () => {
+      request.post({
+        url: `${baseUrl}create-item`,
+        form: {
+          name: 'impala',
+          description: 'its a impala',
+        },
+      }, (error, response) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(401);
+      });
+    });
   });
 });

@@ -1,8 +1,7 @@
 class AuthenticateRoutes {
-  constructor(app, AuthenticateService, ExampleMiddleware) {
+  constructor(app, AuthenticateService) {
     this.app = app;
     this.authenticateService = AuthenticateService;
-    this.ExampleMiddleware = ExampleMiddleware;
     this.routes();
   }
 
@@ -17,10 +16,6 @@ class AuthenticateRoutes {
 
   register(req, res) {
     this.authenticateService.register(req, res);
-  }
-
-  authenticateMiddleware(req, res, next) {
-    this.ExampleMiddleware.run(req, res, next, 'yoyoyoyoyoy');
   }
 }
 

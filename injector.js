@@ -13,7 +13,7 @@ const ItemService = require('./src/services/ItemService');
 const User = require('./src/models/UserModel');
 const Item = require('./src/models/ItemModel');
 
-const ExampleMiddleware = require('./src/middleware/ExampleMiddleware');
+const EnsureAuthenticatedMiddleware = require('./src/middleware/EnsureAuthenticatedMiddleware');
 
 class Injector {
   constructor(app) {
@@ -21,12 +21,12 @@ class Injector {
     const userService = new UserService(User, jwt, config);
     const itemService = new ItemService(Item, jwt, config);
 
-    const exampleMiddleware = new ExampleMiddleware();
+    const ensureAuthenticatedMiddleware = new EnsureAuthenticatedMiddleware(jwt, config);
 
     new Routes(app);
-    new AuthenticateRoutes(app, authenticateService, exampleMiddleware);
+    new AuthenticateRoutes(app, authenticateService);
     new UserRoutes(app, userService);
-    new ItemRoutes(app, itemService);
+    new ItemRoutes(app, itemService, ensureAuthenticatedMiddleware);
   }
 }
 
