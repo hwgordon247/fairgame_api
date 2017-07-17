@@ -32,8 +32,7 @@ app.use((req, res, next) => {
 new Injector(app);
 
 app.use((error, req, res, next) => {
-  console.log('ERROR', error);
-  res.status(401).send('yoyoyo');
+  res.status(401).send({ error });
 });
 
 app.listen(5000, () => {

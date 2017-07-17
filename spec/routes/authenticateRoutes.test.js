@@ -77,10 +77,9 @@ describe('Authenticate', () => {
         },
       },
       (error, response, body) => {
+        expect(error).toBeNull();
         expect(response.statusCode).toBe(401);
-        console.log(error);
-        console.log(body);
-        expect(error).toBe('error');
+        expect(JSON.parse(body).error).toBe('Incorrect username or password');
         done();
       });
     });
