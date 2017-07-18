@@ -12,7 +12,7 @@ class AuthenticateService {
     }, (err, user) => {
       if (err) throw err;
       if (!user) {
-        next('Incorrect username or password');
+        next({ error: 'Incorrect username or password', status: 401 });
       } else if (user) {
         if (user.password !== req.body.password) {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });

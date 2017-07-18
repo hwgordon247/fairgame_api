@@ -31,8 +31,8 @@ app.use((req, res, next) => {
 
 new Injector(app);
 
-app.use((error, req, res, next) => {
-  res.status(401).send({ error });
+app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
+  res.status(error.status || 500).send(error);
 });
 
 app.listen(5000, () => {
