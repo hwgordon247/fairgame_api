@@ -83,5 +83,22 @@ describe('Authenticate', () => {
         done();
       });
     });
+
+    it('should return 401 if password is incorrect', (done) => {
+      request({
+        method: 'POST',
+        url: `${baseUrl}login`,
+        form: {
+          username,
+          password: 'wrong pass',
+        },
+      },
+      (error, response, body) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(401);
+        expect(JSON.parse(body).error).toBe('Incorrect username or password');
+        done();
+      });
+    });
   });
 });

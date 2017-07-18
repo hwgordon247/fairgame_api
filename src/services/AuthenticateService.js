@@ -15,7 +15,7 @@ class AuthenticateService {
         next({ error: 'Incorrect username or password', status: 401 });
       } else if (user) {
         if (user.password !== req.body.password) {
-          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+          next({ error: 'Incorrect username or password', status: 401 });
         } else {
           const token = this.jwt.sign(user, this.config.secret, {
             expiresIn: 60 * 60 * 24,
