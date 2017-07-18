@@ -6,13 +6,8 @@ const bodyParser = require('body-parser');
 
 const Injector = require('./injector.js');
 
-// const ExampleMiddleware = require('./src/middleware/ExampleMiddleware');
-
-// Connection URL
-// let url = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@localhost:27017/fairgame`;
 mongoose.Promise = global.Promise;
 mongoose.connect(config.databaseUrl);
-
 
 const app = express();
 // app.set('superSecret', config.secret);
@@ -25,9 +20,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authtoken');
   next();
 });
-
-// const exampleMiddleware = new ExampleMiddleware();
-// app.use((req, res, next) => { exampleMiddleware.run(req, res, next, 'howdy'); });
 
 new Injector(app);
 

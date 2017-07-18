@@ -32,7 +32,6 @@ class AuthenticateService {
 
   register(req, res) {
     const newUser = new this.User(req.body);
-
     newUser.save((error) => {
       if (error) {
         res.status(400).send({ error });
