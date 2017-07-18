@@ -39,6 +39,7 @@ describe('User', () => {
       (error, response, body) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).username).toBe(username);
+        expect(JSON.parse(body).password).not.toBeDefined();
         done();
       });
     });

@@ -10,7 +10,7 @@ class UserService {
     this.User.findOne({
       username,
     }, (err, user) => {
-      res.send(user);
+      res.send({ username: user.username });
     });
   }
 }
