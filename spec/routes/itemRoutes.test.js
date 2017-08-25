@@ -15,7 +15,7 @@ const description = 'sick animal';
 describe('Item', () => {
   describe('GET /items', () => {
     beforeAll((done) => {
-      const item = new Item({ name, description });
+      const item = new Item({ name, description, ownedBy: '1234' });
       Item.remove({}, (err2) => {
         expect(err2).toBeNull();
         item.save((err) => {
@@ -32,7 +32,7 @@ describe('Item', () => {
       });
     });
 
-    it('should return all items in time remaining order', (done) => {
+    fit('should return all items in time remaining order', (done) => {
       request.get({
         url: `${baseUrl}items`,
       },
