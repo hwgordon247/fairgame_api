@@ -13,6 +13,7 @@ class ItemService {
   }
 
   createItem(req, res) {
+    console.log('IDDD');
     const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
     const ownedBy = _id;
     const { name, description } = req.body;

@@ -3,8 +3,8 @@ const config = require('config');
 const baseUrl = config.baseUrl;
 const User = require('../../src/models/UserModel');
 
-const email = 'dude@legend.com';
-const username = 'Boaty Mc BoatFace';
+const email = 'dude2@legend.com';
+const username = 'Boaty Mc BoatFace2';
 const wrongUsername = 'not me';
 const password = 'Password123';
 

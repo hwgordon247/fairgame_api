@@ -2,29 +2,21 @@ const request = require('request');
 const config = require('config');
 const baseUrl = config.baseUrl;
 const Item = require('../../src/models/ItemModel');
-const User = require('../../src/models/UserModel');
-const jwt = require('jsonwebtoken');
 
-const username = 'Boaty Mc BoatFace';
-const password = 'Password123';
-const email = 'dude@legend.com';
-let token;
+const { getUser, getToken } = require('../support/helper');
+
 const name = 'blesbok';
 const description = 'sick animal';
 
 describe('Item', () => {
   describe('GET /items', () => {
     beforeAll((done) => {
-      const user = new User({ email, username, password });
+      const item = new Item({ name, description, ownedBy: getUser()._id });
       Item.remove({}, (err2) => {
         expect(err2).toBeNull();
-        user.save((error) => {
-          expect(error).toBeNull();
-          const item = new Item({ name, description, ownedBy: user._id });
-          item.save((err) => {
-            expect(err).toBeNull();
-            done();
-          });
+        item.save((err) => {
+          expect(err).toBeNull();
+          done();
         });
       });
     });
@@ -32,10 +24,7 @@ describe('Item', () => {
     afterAll((done) => {
       Item.remove({}, (err) => {
         expect(err).toBeNull();
-        User.remove({}, (error) => {
-          expect(error).toBeNull();
-          done();
-        });
+        done();
       });
     });
 
@@ -54,25 +43,10 @@ describe('Item', () => {
   });
 
   describe('POST /create-item', () => {
-    beforeAll((done) => {
-      const user = new User({ email, username, password });
-      user.save((err) => {
-        expect(err).toBeNull();
-        console.log(user);
-        token = jwt.sign(user, config.secret, {
-          expiresIn: 60 * 60 * 24,
-        });
-        done();
-      });
-    });
-
     afterAll((done) => {
-      User.remove({}, (err) => {
-        expect(err).toBeNull();
-        Item.remove({}, (err2) => {
-          expect(err2).toBeNull();
-          done();
-        });
+      Item.remove({}, (err2) => {
+        expect(err2).toBeNull();
+        done();
       });
     });
 
@@ -84,7 +58,7 @@ describe('Item', () => {
           description: 'its a blesbok',
         },
         headers: {
-          authtoken: token,
+          authtoken: getToken(),
         },
       }, (error, response, body) => {
         expect(error).toBeNull();
