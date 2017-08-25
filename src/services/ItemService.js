@@ -13,8 +13,8 @@ class ItemService {
   }
 
   createItem(req, res) {
-    // const { username } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc; // eslint-disable-line no-underscore-dangle
-    const ownedBy = '5971fbaa1b651370f9091f69';
+    const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
+    const ownedBy = _id;
     const { name, description } = req.body;
     const newItem = new this.Item({
       name,

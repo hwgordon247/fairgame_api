@@ -15,12 +15,16 @@ const description = 'sick animal';
 describe('Item', () => {
   describe('GET /items', () => {
     beforeAll((done) => {
-      const item = new Item({ name, description, ownedBy: '1234' });
+      const user = new User({ email, username, password });
       Item.remove({}, (err2) => {
         expect(err2).toBeNull();
-        item.save((err) => {
-          expect(err).toBeNull();
-          done();
+        user.save((error) => {
+          expect(error).toBeNull();
+          const item = new Item({ name, description, ownedBy: user._id });
+          item.save((err) => {
+            expect(err).toBeNull();
+            done();
+          });
         });
       });
     });
@@ -28,11 +32,14 @@ describe('Item', () => {
     afterAll((done) => {
       Item.remove({}, (err) => {
         expect(err).toBeNull();
-        done();
+        User.remove({}, (error) => {
+          expect(error).toBeNull();
+          done();
+        });
       });
     });
 
-    fit('should return all items in time remaining order', (done) => {
+    it('should return all items in time remaining order', (done) => {
       request.get({
         url: `${baseUrl}items`,
       },
@@ -51,6 +58,7 @@ describe('Item', () => {
       const user = new User({ email, username, password });
       user.save((err) => {
         expect(err).toBeNull();
+        console.log(user);
         token = jwt.sign(user, config.secret, {
           expiresIn: 60 * 60 * 24,
         });
