@@ -3,18 +3,17 @@ const userHelper = require('../support/userHelper');
 
 class ItemHelper {
   constructor() {
-    this.name = 'blesbok';
-    this.description = 'sick animal';
+    this.items = {};
   }
 
-  createItem(done) {
+  createItem(name, description, id, done) {
     const item = new Item({
-      name: this.name,
-      description: this.description,
-      ownedBy: userHelper.getUser('first')._id });
+      name,
+      description,
+      ownedBy: userHelper.getUser(id)._id });
     item.save((err) => {
       expect(err).toBeNull();
-      this.setItem(item);
+      this.setItem(item, id);
       done();
     });
   }
@@ -26,12 +25,12 @@ class ItemHelper {
     });
   }
 
-  setItem(item) {
-    this.item = item;
+  setItem(item, id) {
+    this.items[id] = item;
   }
 
-  getItem() {
-    return this.item;
+  getItem(id) {
+    return this.items[id];
   }
 }
 

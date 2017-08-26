@@ -19,7 +19,7 @@ describe('Item', () => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).length).toBe(1);
-        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem().name);
+        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem('first').name);
         expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser('first').username);
         done();
       });
@@ -35,7 +35,7 @@ describe('Item', () => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).length).toBe(1);
-        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem().name);
+        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem('first').name);
         expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser('first').username);
         done();
       });

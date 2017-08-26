@@ -19,8 +19,9 @@ beforeAll((done) => {
   userHelper.createUser('Kieth', 'rolling@stones.com', 'Password123', 'second', done);
 });
 
+// Create 1st item belonging to 1st User
 beforeAll((done) => {
-  itemHelper.createItem(done);
+  itemHelper.createItem('blesbok', 'sik animal', 'first', done);
 });
 
 afterAll((done) => {
