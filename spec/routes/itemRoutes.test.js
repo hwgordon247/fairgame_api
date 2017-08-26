@@ -4,30 +4,13 @@ const baseUrl = config.baseUrl;
 const Item = require('../../src/models/ItemModel');
 
 const userHelper = require('../support/userHelper');
+const itemHelper = require('../support/itemHelper');
 
-const name = 'blesbok';
-const description = 'sick animal';
+const name = 'impala';
+const description = 'its a falcon richard';
 
 describe('Item', () => {
   describe('GET /items', () => {
-    beforeAll((done) => {
-      const item = new Item({ name, description, ownedBy: userHelper.getUser()._id });
-      Item.remove({}, (err2) => {
-        expect(err2).toBeNull();
-        item.save((err) => {
-          expect(err).toBeNull();
-          done();
-        });
-      });
-    });
-
-    afterAll((done) => {
-      Item.remove({}, (err) => {
-        expect(err).toBeNull();
-        done();
-      });
-    });
-
     it('should return all items in time remaining order', (done) => {
       request.get({
         url: `${baseUrl}items`,
@@ -36,7 +19,7 @@ describe('Item', () => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).length).toBe(1);
-        expect(JSON.parse(body)[0].name).toBe(name);
+        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem().name);
         done();
       });
     });
@@ -54,8 +37,8 @@ describe('Item', () => {
       request.post({
         url: `${baseUrl}create-item`,
         form: {
-          name: 'blesbok',
-          description: 'its a blesbok',
+          name,
+          description,
         },
         headers: {
           authtoken: userHelper.getToken(),
