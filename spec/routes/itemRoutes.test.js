@@ -20,7 +20,23 @@ describe('Item', () => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(body).length).toBe(1);
         expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem().name);
-        expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser().username);
+        expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser('first').username);
+        done();
+      });
+    });
+  });
+
+  describe('GET /user-items', () => {
+    it('should return the items of logged in user', (done) => {
+      request.get({
+        url: `${baseUrl}items`,
+      },
+      (error, response, body) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(200);
+        expect(JSON.parse(body).length).toBe(1);
+        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem().name);
+        expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser('first').username);
         done();
       });
     });
@@ -28,8 +44,9 @@ describe('Item', () => {
 
   describe('POST /create-item', () => {
     afterAll((done) => {
-      Item.remove({}, (err2) => {
-        expect(err2).toBeNull();
+      Item.findOne({ name })
+      .remove({}, (err) => {
+        expect(err).toBeNull();
         done();
       });
     });
@@ -42,7 +59,7 @@ describe('Item', () => {
           description,
         },
         headers: {
-          authtoken: userHelper.getToken(),
+          authtoken: userHelper.getToken('first'),
         },
       }, (error, response, body) => {
         expect(error).toBeNull();

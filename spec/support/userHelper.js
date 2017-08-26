@@ -4,24 +4,23 @@ const config = require('config');
 
 class UserHelper {
   constructor() {
-    this.username = 'Boaty Mc BoatFace';
-    this.password = 'Password123';
-    this.email = 'dude@legend.com';
+    this.storedUsers = {};
+    this.storedTokens = {};
   }
 
-  createUser(done) {
+  createUser(username, email, password, id, done) {
     const user = new User({
-      email: this.email,
-      username: this.username,
-      password: this.password,
+      email,
+      username,
+      password,
     });
     user.save((error) => {
       expect(error).toBeNull();
       const token = jwt.sign(user, config.secret, {
         expiresIn: 60 * 60 * 24,
       });
-      this.setToken(token);
-      this.setUser(user);
+      this.setToken(token, id);
+      this.setUser(user, id);
       done();
     });
   }
@@ -33,20 +32,20 @@ class UserHelper {
     });
   }
 
-  getUser() {
-    return this.storedUser;
+  getUser(id) {
+    return this.storedUsers[id];
   }
 
-  getToken() {
-    return this.storedToken;
+  getToken(id) {
+    return this.storedTokens[id];
   }
 
-  setUser(newUser) {
-    this.storedUser = newUser;
+  setUser(newUser, id) {
+    this.storedUsers[id] = newUser;
   }
 
-  setToken(newToken) {
-    this.storedToken = newToken;
+  setToken(newToken, id) {
+    this.storedTokens[id] = newToken;
   }
 }
 

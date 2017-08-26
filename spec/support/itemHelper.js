@@ -11,7 +11,7 @@ class ItemHelper {
     const item = new Item({
       name: this.name,
       description: this.description,
-      ownedBy: userHelper.getUser()._id });
+      ownedBy: userHelper.getUser('first')._id });
     item.save((err) => {
       expect(err).toBeNull();
       this.setItem(item);

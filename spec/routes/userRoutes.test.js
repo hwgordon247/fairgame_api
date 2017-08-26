@@ -9,12 +9,12 @@ describe('User', () => {
       request.get({
         url: `${baseUrl}user`,
         headers: {
-          authtoken: userHelper.getToken(),
+          authtoken: userHelper.getToken('first'),
         },
       },
       (error, response, body) => {
         expect(response.statusCode).toBe(200);
-        expect(JSON.parse(body).username).toBe(userHelper.getUser().username);
+        expect(JSON.parse(body).username).toBe(userHelper.getUser('first').username);
         expect(JSON.parse(body).password).not.toBeDefined();
         done();
       });

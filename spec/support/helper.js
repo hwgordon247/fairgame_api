@@ -4,14 +4,22 @@ const userHelper = require('./userHelper');
 const itemHelper = require('./itemHelper');
 
 beforeAll((done) => {
-  console.log('start');
   mongoose.Promise = global.Promise;
   mongoose.connect(config.databaseUrl);
-  userHelper.createUser(done);
+  done();
+});
+
+// Create 1st user
+beforeAll((done) => {
+  userHelper.createUser('Boaty Mc BoatFace', 'dude@legend.com', 'Password123', 'first', done);
+});
+
+// Create 2nd user
+beforeAll((done) => {
+  userHelper.createUser('Kieth', 'rolling@stones.com', 'Password123', 'second', done);
 });
 
 beforeAll((done) => {
-  console.log('second');
   itemHelper.createItem(done);
 });
 
