@@ -3,7 +3,7 @@ const config = require('config');
 const baseUrl = config.baseUrl;
 const Item = require('../../src/models/ItemModel');
 
-const { getUser, getToken } = require('../support/helper');
+const userHelper = require('../support/userHelper');
 
 const name = 'blesbok';
 const description = 'sick animal';
@@ -11,7 +11,7 @@ const description = 'sick animal';
 describe('Item', () => {
   describe('GET /items', () => {
     beforeAll((done) => {
-      const item = new Item({ name, description, ownedBy: getUser()._id });
+      const item = new Item({ name, description, ownedBy: userHelper.getUser()._id });
       Item.remove({}, (err2) => {
         expect(err2).toBeNull();
         item.save((err) => {
@@ -58,7 +58,7 @@ describe('Item', () => {
           description: 'its a blesbok',
         },
         headers: {
-          authtoken: getToken(),
+          authtoken: userHelper.getToken(),
         },
       }, (error, response, body) => {
         expect(error).toBeNull();
