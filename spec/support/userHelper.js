@@ -22,6 +22,7 @@ class UserHelper {
       });
       this.setToken(token);
       this.setUser(user);
+      console.log(token);
       done();
     });
   }

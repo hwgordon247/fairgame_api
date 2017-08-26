@@ -9,16 +9,10 @@ const wrongUsername = 'not me';
 const password = 'Password123';
 
 describe('Authenticate', () => {
-  // beforeAll((done) => {
-  //   const testUser = new User({ email, username, password });
-  //   testUser.save((err) => {
-  //     expect(err).toBeNull();
-  //     done();
-  //   });
-  // });
-
   afterAll((done) => {
-    User.remove({}, (err) => {
+    User.findOne({ username })
+    .remove()
+    .exec((err) => {
       expect(err).toBeNull();
       done();
     });
