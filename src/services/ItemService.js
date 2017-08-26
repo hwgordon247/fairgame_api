@@ -7,13 +7,13 @@ class ItemService {
 
   getItems(req, res) {
     this.Item.find({})
+    .populate('ownedBy')
     .exec((err, items) => {
       res.send(items);
     });
   }
 
   createItem(req, res) {
-    console.log('IDDD');
     const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
     const ownedBy = _id;
     const { name, description } = req.body;
