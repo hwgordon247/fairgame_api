@@ -6,7 +6,7 @@ class UserService {
 
   // TODO test and improve error handling
   getUser(req, res) {
-    const { username } = this.jwtTokenService.decode(req); // eslint-disable-line no-underscore-dangle
+    const { username } = this.jwtTokenService.decode(req);
     this.User.findOne({
       username,
     }, (err, user) => {
