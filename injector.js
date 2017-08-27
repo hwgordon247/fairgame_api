@@ -9,6 +9,7 @@ const ItemRoutes = require('./src/routes/ItemRoutes');
 const AuthenticateService = require('./src/services/AuthenticateService');
 const UserService = require('./src/services/UserService');
 const ItemService = require('./src/services/ItemService');
+const JwtTokenService = require('./src/services/JwtTokenService');
 
 const User = require('./src/models/UserModel');
 const Item = require('./src/models/ItemModel');
@@ -17,9 +18,10 @@ const EnsureAuthenticatedMiddleware = require('./src/middleware/EnsureAuthentica
 
 class Injector {
   constructor(app) {
-    const authenticateService = new AuthenticateService(User, jwt, config);
-    const userService = new UserService(User, jwt, config);
-    const itemService = new ItemService(Item, jwt, config);
+    const jwtTokenService = new JwtTokenService(jwt, config);
+    const authenticateService = new AuthenticateService(User, jwtTokenService);
+    const userService = new UserService(User, jwtTokenService);
+    const itemService = new ItemService(Item, jwtTokenService);
 
     const ensureAuthenticatedMiddleware = new EnsureAuthenticatedMiddleware(jwt, config);
 

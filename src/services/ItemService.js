@@ -1,8 +1,7 @@
 class ItemService {
-  constructor(Item, jwt, config) {
+  constructor(Item, jwtTokenService) {
     this.Item = Item;
-    this.config = config;
-    this.jwt = jwt;
+    this.jwtTokenService = jwtTokenService;
   }
 
   getItems(req, res) {
@@ -14,7 +13,7 @@ class ItemService {
   }
 
   createItem(req, res) {
-    const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
+    const { _id } = this.jwtTokenService.decode(req);
     const ownedBy = _id;
     const { name, description } = req.body;
     const newItem = new this.Item({
@@ -35,7 +34,7 @@ class ItemService {
   }
 
   getUserItems(req, res) {
-    const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
+    const { _id } = this.jwtTokenService.decode(req);
     this.Item
     .find({
       ownedBy: _id,

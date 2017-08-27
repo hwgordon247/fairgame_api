@@ -1,13 +1,12 @@
 class UserService {
-  constructor(User, jwt, config) {
+  constructor(User, jwtTokenService) {
     this.User = User;
-    this.jwt = jwt;
-    this.config = config;
+    this.jwtTokenService = jwtTokenService;
   }
 
   // TODO test and improve error handling
   getUser(req, res) {
-    const { username } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc; // eslint-disable-line no-underscore-dangle
+    const { username } = this.jwtTokenService.decode(req); // eslint-disable-line no-underscore-dangle
     this.User.findOne({
       username,
     }, (err, user) => {
