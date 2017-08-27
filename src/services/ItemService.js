@@ -44,6 +44,17 @@ class ItemService {
       res.send(items);
     });
   }
+
+  getItemsByUsername(req, res) {
+    this.Item
+    .find({
+      ownedBy: req.params.userId,
+    })
+    .populate('ownedBy')
+    .exec((error, items) => {
+      res.send(items);
+    });
+  }
 }
 
 module.exports = ItemService;
