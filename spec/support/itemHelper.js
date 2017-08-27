@@ -6,11 +6,11 @@ class ItemHelper {
     this.items = {};
   }
 
-  createItem(name, description, id, done) {
+  createItem(name, description, id, ownerId, done) {
     const item = new Item({
       name,
       description,
-      ownedBy: userHelper.getUser(id)._id });
+      ownedBy: userHelper.getUser(ownerId)._id });
     item.save((err) => {
       expect(err).toBeNull();
       this.setItem(item, id);

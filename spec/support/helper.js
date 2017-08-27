@@ -21,7 +21,12 @@ beforeAll((done) => {
 
 // Create 1st item belonging to 1st User
 beforeAll((done) => {
-  itemHelper.createItem('blesbok', 'sik animal', 'first', done);
+  itemHelper.createItem('blesbok', 'sik animal', 'first', 'first', done);
+});
+
+// Create 2nd item belonging to 2nd User
+beforeAll((done) => {
+  itemHelper.createItem('elephant', 'big boy', 'second', 'second', done);
 });
 
 afterAll((done) => {

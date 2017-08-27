@@ -33,6 +33,18 @@ class ItemService {
       }
     });
   }
+
+  getUserItems(req, res) {
+    const { _id } = this.jwt.decode(req.headers.authtoken, this.config.secret)._doc;
+    this.Item
+    .find({
+      ownedBy: _id,
+    })
+    .populate('ownedBy')
+    .exec((error, items) => {
+      res.send(items);
+    });
+  }
 }
 
 module.exports = ItemService;

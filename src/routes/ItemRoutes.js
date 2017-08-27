@@ -9,6 +9,7 @@ class ItemRoutes {
   routes() {
     this.app.get('/items', this.getItems.bind(this));
     this.app.post('/create-item', this.authMiddleware.bind(this), this.createItem.bind(this));
+    this.app.get('/user-items', this.authMiddleware.bind(this), this.getUserItems.bind(this));
   }
 
   getItems(req, res) {
@@ -17,6 +18,10 @@ class ItemRoutes {
 
   createItem(req, res) {
     this.itemService.createItem(req, res);
+  }
+
+  getUserItems(req, res) {
+    this.itemService.getUserItems(req, res);
   }
 }
 
