@@ -9,9 +9,11 @@ class UserService {
     const { username } = this.jwtTokenService.decode(req);
     this.User.findOne({
       username,
-    }, (err, user) => {
-      if (err) {
-        res.status(400).send({ err });
+    }, (error, user) => {
+      if (error) {
+        res.status(400).send({ error });
+      } else if (!user) {
+        res.status(500).send({ error: 'User not found.' });
       } else {
         res.send({ username: user.username });
       }

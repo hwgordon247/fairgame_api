@@ -10,6 +10,7 @@ class UserRoutes {
   }
 
   getUser(req, res) {
+    console.log('GETETETE')
     this.userService.getUser(req, res);
   }
 }
