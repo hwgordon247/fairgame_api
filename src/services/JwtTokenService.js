@@ -14,10 +14,6 @@ class JwtTokenService {
       expiresIn: 60 * 60 * 24,
     });
   }
-
-  verify() {
-    
-  }
 }
 
 module.exports = JwtTokenService;
