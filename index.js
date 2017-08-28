@@ -27,6 +27,6 @@ app.use((error, req, res, next) => { // eslint-disable-line no-unused-vars
   res.status(error.status || 500).send(error);
 });
 
-app.listen(5000, () => {
-  console.log('Example app listening on port 5000!');
+app.listen(config.port, () => {
+  console.log(`Example app listening on port ${config.port}!`);
 });

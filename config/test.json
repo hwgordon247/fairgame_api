@@ -1,3 +1,5 @@
 {
-  "databaseUrl": "mongodb://localhost:27017/fairgame_test"
+  "databaseUrl": "mongodb://localhost:27017/fairgame_test",
+  "baseUrl": "http://localhost:5001/",
+  "port": 5001
 }

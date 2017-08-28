@@ -8,6 +8,7 @@ class ItemService {
     this.Item.find({})
     .populate('ownedBy')
     .exec((err, items) => {
+      console.log(items);
       res.send(items);
     });
   }
@@ -45,7 +46,7 @@ class ItemService {
     });
   }
 
-  getItemsByUsername(req, res) {
+  getItemsById(req, res) {
     this.Item
     .find({
       ownedBy: req.params.userId,

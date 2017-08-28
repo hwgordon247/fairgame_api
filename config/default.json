@@ -1,5 +1,6 @@
 {
   "databaseUrl": "mongodb://localhost:27017/fairgame",
   "secret": "secret",
+  "port": 5000,
   "baseUrl": "http://localhost:5000/"
 }
