@@ -1,6 +1,7 @@
 class ItemService {
-  constructor(Item, jwtTokenService) {
+  constructor(Item, jwtTokenService, User) {
     this.Item = Item;
+    this.User = User;
     this.jwtTokenService = jwtTokenService;
   }
 
@@ -33,26 +34,19 @@ class ItemService {
     });
   }
 
-  getUserItems(req, res) {
-    const { _id } = this.jwtTokenService.decode(req);
-    this.Item
-    .find({
-      ownedBy: _id,
+  getItemsByUsername(req, res) {
+    this.User.findOne({
+      username: req.params.username,
     })
-    .populate('ownedBy')
-    .exec((error, items) => {
-      res.send(items);
-    });
-  }
-
-  getItemsById(req, res) {
-    this.Item
-    .find({
-      ownedBy: req.params.userId,
-    })
-    .populate('ownedBy')
-    .exec((error, items) => {
-      res.send(items);
+    .exec((err, user) => {
+      this.Item
+      .find({
+        ownedBy: user.id,
+      })
+      .populate('ownedBy')
+      .exec((error, items) => {
+        res.send(items);
+      });
     });
   }
 }

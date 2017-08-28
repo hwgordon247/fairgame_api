@@ -20,7 +20,7 @@ class Injector {
     const jwtTokenService = new JwtTokenService(jwt, config);
     const authenticateService = new AuthenticateService(User, jwtTokenService);
     const userService = new UserService(User, jwtTokenService);
-    const itemService = new ItemService(Item, jwtTokenService);
+    const itemService = new ItemService(Item, jwtTokenService, User);
 
     const ensureAuthenticatedMiddleware = new EnsureAuthenticatedMiddleware(jwt, config);
 

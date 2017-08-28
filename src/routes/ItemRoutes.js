@@ -8,25 +8,20 @@ class ItemRoutes {
 
   routes() {
     this.app.get('/items', this.getItems.bind(this));
-    this.app.get('/items/:userId', this.getItemsById.bind(this));
+    this.app.get('/items/:username', this.getItemsByUsername.bind(this));
     this.app.post('/create-item', this.authMiddleware.bind(this), this.createItem.bind(this));
-    this.app.get('/user-items', this.authMiddleware.bind(this), this.getUserItems.bind(this));
   }
 
   getItems(req, res) {
     this.itemService.getItems(req, res);
   }
 
-  getItemsById(req, res) {
-    this.itemService.getItemsById(req, res);
+  getItemsByUsername(req, res) {
+    this.itemService.getItemsByUsername(req, res);
   }
 
   createItem(req, res) {
     this.itemService.createItem(req, res);
-  }
-
-  getUserItems(req, res) {
-    this.itemService.getUserItems(req, res);
   }
 }
 

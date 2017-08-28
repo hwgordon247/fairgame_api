@@ -26,40 +26,10 @@ describe('Item', () => {
     });
   });
 
-  describe('GET /user-items', () => {
-    it('should return the items of logged in user', (done) => {
-      request.get({
-        url: `${baseUrl}user-items`,
-        headers: {
-          authtoken: userHelper.getToken('first'),
-        },
-      },
-      (error, response, body) => {
-        expect(error).toBeNull();
-        expect(response.statusCode).toBe(200);
-        expect(JSON.parse(body).length).toBe(1);
-        expect(JSON.parse(body)[0].name).toBe(itemHelper.getItem('first').name);
-        expect(JSON.parse(body)[0].ownedBy.username).toBe(userHelper.getUser('first').username);
-        done();
-      });
-    });
-
-    it('should return an error if user not logged in', (done) => {
-      request.get({
-        url: `${baseUrl}user-items`,
-      },
-      (error, response) => {
-        expect(error).toBeNull();
-        expect(response.statusCode).toBe(401);
-        done();
-      });
-    });
-  });
-
-  describe('GET /items/:userId', () => {
+  describe('GET /items/:username', () => {
     it('should return all items for the chosen user', (done) => {
       request.get({
-        url: `${baseUrl}items/${userHelper.getUser('first')._id}`,
+        url: `${baseUrl}items/${userHelper.getUser('first').username}`,
       },
       (error, response, body) => {
         expect(error).toBeNull();
