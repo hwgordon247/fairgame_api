@@ -8,7 +8,6 @@ class ItemService {
     this.Item.find({})
     .populate('ownedBy')
     .exec((err, items) => {
-      console.log(items);
       res.send(items);
     });
   }

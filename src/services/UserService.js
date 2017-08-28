@@ -6,16 +6,18 @@ class UserService {
 
   // TODO test and improve error handling
   getUser(req, res) {
-    const { username } = this.jwtTokenService.decode(req);
     this.User.findOne({
-      username,
+      username: req.params.username,
     }, (error, user) => {
       if (error) {
         res.status(400).send({ error });
       } else if (!user) {
         res.status(500).send({ error: 'User not found.' });
       } else {
-        res.send({ username: user.username });
+        res.send({
+          username: user.username,
+          email: user.email,
+        });
       }
     });
   }

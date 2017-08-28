@@ -6,11 +6,10 @@ class UserRoutes {
   }
 
   routes() {
-    this.app.get('/user', this.getUser.bind(this));
+    this.app.get('/user/:username', this.getUser.bind(this));
   }
 
   getUser(req, res) {
-    console.log('GETETETE')
     this.userService.getUser(req, res);
   }
 }

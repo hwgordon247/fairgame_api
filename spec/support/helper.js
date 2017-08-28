@@ -11,7 +11,7 @@ beforeAll((done) => {
 
 // Create 1st user
 beforeAll((done) => {
-  userHelper.createUser('Boaty Mc BoatFace', 'dude@legend.com', 'Password123', 'first', done);
+  userHelper.createUser('BoatyMcBoatFace', 'dude@legend.com', 'Password123', 'first', done);
 });
 
 // Create 2nd user
