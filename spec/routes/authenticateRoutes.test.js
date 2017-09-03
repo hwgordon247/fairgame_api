@@ -28,7 +28,7 @@ describe('Authenticate', () => {
       (error, response, body) => {
         expect(error).toBeNull();
         expect(response.statusCode).toBe(200);
-        expect(JSON.parse(body).message).toBe('Welcome to the App');
+        expect(JSON.parse(body).username).toBe(username);
         done();
       });
     });
@@ -56,7 +56,7 @@ describe('Authenticate', () => {
       },
       (error, response, body) => {
         expect(response.statusCode).toBe(200);
-        expect(JSON.parse(body).message).toBe('Enjoy your token!');
+        expect(JSON.parse(body).username).toBe(username);
         done();
       });
     });

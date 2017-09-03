@@ -18,8 +18,7 @@ class AuthenticateService {
         } else {
           const token = this.jwtTokenService.sign(user);
           res.json({
-            success: true,
-            message: 'Enjoy your token!',
+            username: user.username,
             token,
           });
         }
@@ -35,8 +34,7 @@ class AuthenticateService {
       } else {
         const token = this.jwtTokenService.sign(newUser);
         res.json({
-          success: true,
-          message: 'Welcome to the App',
+          username: newUser.username,
           token,
         });
       }
