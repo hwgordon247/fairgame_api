@@ -40,6 +40,18 @@ describe('Item', () => {
         done();
       });
     });
+
+    it('should return error if user is not found', (done) => {
+      request.get({
+        url: `${baseUrl}items/woololo`,
+      },
+      (error, response, body) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(404);
+        expect(JSON.parse(body).error).toBe('User not found.');
+        done();
+      });
+    });
   });
 
   describe('POST /create-item', () => {

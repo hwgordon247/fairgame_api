@@ -12,7 +12,7 @@ class UserService {
       if (error) {
         res.status(400).send({ error });
       } else if (!user) {
-        res.status(500).send({ error: 'User not found.' });
+        res.status(404).send({ error: 'User not found.' });
       } else {
         res.send({
           username: user.username,

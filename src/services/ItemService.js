@@ -39,14 +39,18 @@ class ItemService {
       username: req.params.username,
     })
     .exec((err, user) => {
-      this.Item
-      .find({
-        ownedBy: user.id,
-      })
-      .populate('ownedBy')
-      .exec((error, items) => {
-        res.send(items);
-      });
+      if (user) {
+        this.Item
+        .find({
+          ownedBy: user.id,
+        })
+        .populate('ownedBy')
+        .exec((error, items) => {
+          res.send(items);
+        });
+      } else {
+        res.status(404).send({ error: 'User not found.' });
+      }
     });
   }
 
@@ -58,7 +62,7 @@ class ItemService {
       if (item) {
         res.send(item);
       } else {
-        res.status(404).send({ error: 'Item not found.' })
+        res.status(404).send({ error: 'Item not found.' });
       }
     });
   }
