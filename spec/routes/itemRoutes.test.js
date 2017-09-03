@@ -83,4 +83,28 @@ describe('Item', () => {
       });
     });
   });
+
+  describe('GET /item/:id', () => {
+    it('should return the specific item', () => {
+      request.get({
+        url: `${baseUrl}item/${itemHelper.getItem('first')._id}`,
+      },
+      (error, response, body) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(200);
+        expect(JSON.parse(body).name).toBe(itemHelper.getItem('first').name);
+      });
+    });
+
+    it('should return an error if the item is not found', () => {
+      request.get({
+        url: `${baseUrl}item/1234`,
+      },
+      (error, response, body) => {
+        expect(error).toBeNull();
+        expect(response.statusCode).toBe(404);
+        expect(JSON.parse(body).error).toBe('Item not found.');
+      });
+    });
+  });
 });

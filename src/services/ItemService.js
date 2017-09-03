@@ -49,6 +49,19 @@ class ItemService {
       });
     });
   }
+
+  getItemById(req, res) {
+    this.Item.findOne({
+      _id: req.params.id,
+    })
+    .exec((err, item) => {
+      if (item) {
+        res.send(item);
+      } else {
+        res.status(404).send({ error: 'Item not found.' })
+      }
+    });
+  }
 }
 
 module.exports = ItemService;
